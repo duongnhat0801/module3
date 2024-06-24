@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BookRepo implements IBookRepo {
@@ -85,5 +86,25 @@ public class BookRepo implements IBookRepo {
         ps.setString(4, book.getCategory());
         ps.setInt(5, book.getId());
         ps.executeUpdate();
+    }
+
+    @Override
+    public List<Book> searchByTitle(String title) throws SQLException {
+        List<Book> books = new ArrayList<>();
+        Connection connection = new DBConnection().getConnection();
+        String sql = "select * from book where title like ?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, "%" + title + "%");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String bookTitle = rs.getString("title");
+            int pageSize = rs.getInt("pageSize");
+            String author = rs.getString("author");
+            String category = rs.getString("category");
+            Book book = new Book(id, bookTitle, pageSize, author, category);
+            books.add(book);
+        }
+        return books;
     }
 }

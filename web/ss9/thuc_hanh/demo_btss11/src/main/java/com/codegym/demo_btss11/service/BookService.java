@@ -6,6 +6,7 @@ import com.codegym.demo_btss11.repository.IBookRepo;
 
 import java.sql.SQLException;
 
+import java.util.Collections;
 import java.util.List;
 
 public class BookService implements IBookService {
@@ -51,6 +52,15 @@ public class BookService implements IBookService {
     public void updateBook(Book book) {
         try {
             BookRepo.updateBook(book);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<Book> searchByTitle(String title) {
+        try {
+            return BookRepo.searchByTitle(title);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -33,7 +33,17 @@ public class BookServlet extends HttpServlet {
             case "/update":
                 showFromUpdateBook(req, resp);
                 break;
+            case "/search":
+                searchBook(req, resp);
+                break;
         }
+    }
+
+    private void searchBook(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String title = req.getParameter("title");
+        List<Book> books = BookService.searchByTitle(title);
+        req.setAttribute("books", books);
+        req.getRequestDispatcher("/views/list.jsp").forward(req, resp);
     }
 
     private void showFromUpdateBook(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -70,6 +80,7 @@ public class BookServlet extends HttpServlet {
             case "/update":
                 updateBook(req,resp);
                 break;
+
         }
     }
 

@@ -11,4 +11,6 @@ public interface IBookRepo {
     void deleteBoook(int id) throws SQLException;
     Book selectBook(int id) throws SQLException;
     void updateBook(Book book)throws SQLException;
+
+    List<Book> searchByTitle(String title) throws SQLException;
 }
