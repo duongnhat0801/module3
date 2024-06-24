@@ -1,16 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ACER
-  Date: 6/19/2024
-  Time: 11:13 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!-- success.jsp -->
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Login Success</title>
+</head>
+<body>
+<h2>Login Successful!</h2>
+<p>${message}</p>
+</body>
 </html>
+

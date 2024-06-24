@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-
+<h6>Đăng nhập thành công</h6>
+<p>${message}</p>
 </body>
 </html>
