@@ -77,12 +77,13 @@ public class BookRepo implements IBookRepo {
     @Override
     public void updateBook(Book book) throws SQLException {
         Connection connection = new DBConnection().getConnection();
-        String sql = "update book set title = ? , pageSize = ? , author = ? ,category = ? where id = ?";
+        String sql = "update book set title = ?, pageSize = ?, author = ?, category = ? where id = ?";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1,book.getTitle());
-        ps.setInt(2,book.getPageSize());
-        ps.setString(3,book.getAuthor());
-        ps.setString(4,book.getCategory());
+        ps.setString(1, book.getTitle());
+        ps.setInt(2, book.getPageSize());
+        ps.setString(3, book.getAuthor());
+        ps.setString(4, book.getCategory());
+        ps.setInt(5, book.getId());
         ps.executeUpdate();
     }
 }
